@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled from "styled-components";
 
 export const TaskContainer = styled.div`
   background-color: #303437;

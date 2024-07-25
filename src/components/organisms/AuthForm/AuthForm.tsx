@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import Theme from 'styles/themes';
 
 export const AuthFormItem = styled.div`
