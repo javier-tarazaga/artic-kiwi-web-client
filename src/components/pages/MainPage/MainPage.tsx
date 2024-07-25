@@ -1,19 +1,32 @@
 import React from 'react';
+import {
+  MainContainer,
+  LeftPanel,
+  MiddlePanel,
+  RightPanel
+} from './MainPage.style';
 import MainSideMenu from 'components/organisms/MainSideMenu';
 import TaskList from 'components/organisms/TaskList';
-import { MainScreenContainer, SideMenu, TaskListContainer } from './MainPage.style';
+import TaskDetails from 'components/organisms/TaskDetails';
 
-const MainScreen: React.FC = () => {
+const MainPage: React.FC = () => {
+  const isRightPanelVisible = true; // Set this based on your logic
+
   return (
-    <MainScreenContainer>
-      <SideMenu>
+    <MainContainer>
+      <LeftPanel>
         <MainSideMenu />
-      </SideMenu>
-      <TaskListContainer>
+      </LeftPanel>
+      <MiddlePanel isRightPanelVisible={isRightPanelVisible}>
         <TaskList />
-      </TaskListContainer>
-    </MainScreenContainer>
+      </MiddlePanel>
+      {isRightPanelVisible && (
+        <RightPanel isRightPanelVisible={isRightPanelVisible}>
+          <TaskDetails />
+        </RightPanel>
+      )}
+    </MainContainer>
   );
 };
 
-export default MainScreen;
+export default MainPage;

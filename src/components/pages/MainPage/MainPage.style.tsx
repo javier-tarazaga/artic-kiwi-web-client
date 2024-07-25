@@ -1,17 +1,36 @@
 import styled from 'styled-components';
 
-export const MainScreenContainer = styled.div`
+export const MainContainer = styled.div`
   display: flex;
   height: 100vh;
+  background-color: #1E1E1E; /* Adjust as needed */
 `;
 
-export const SideMenu = styled.aside`
-  width: 300px; /* Fixed width for the sidebar */
-  background-color: #f0f0f0; /* Light background color */
-  border-right: 1px solid #ddd; /* Optional: Add a border to separate the sidebar */
+export const LeftPanel = styled.div`
+  width: 300px; /* Adjust width as needed */
+  background-color: #292B2D;
+  color: white;
+  padding: 15px;
+  overflow-y: auto;
 `;
 
-export const TaskListContainer = styled.main`
-  flex-grow: 1; /* Take up the remaining space */
-  padding: 20px; /* Optional: Add some padding for content */
+export const MiddlePanel = styled.div<{ isRightPanelVisible: boolean }>`
+  flex-grow: ${({ isRightPanelVisible }) => (isRightPanelVisible ? 8 : 1)};
+  flex-shrink: 0;
+  min-width: 0; /* Ensures the middle panel can shrink properly */
+  background-color: #1E1E1E;
+  color: white;
+  padding: 15px;
+  overflow-y: auto;
+`;
+
+export const RightPanel = styled.div<{ isRightPanelVisible: boolean }>`
+  flex-grow: 4;
+  flex-shrink: 0;
+  flex-basis: ${({ isRightPanelVisible }) => (isRightPanelVisible ? '20%' : '0')};
+  background-color: #2E2E2E;
+  color: white;
+  padding: 15px;
+  overflow-y: auto;
+  display: ${({ isRightPanelVisible }) => (isRightPanelVisible ? 'block' : 'none')};
 `;
