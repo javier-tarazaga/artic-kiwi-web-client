@@ -1,31 +1,18 @@
 import React from 'react';
-import GridLayout, { Layout } from 'react-grid-layout';
 import MainSideMenu from 'components/organisms/MainSideMenu';
 import TaskList from 'components/organisms/TaskList';
+import { MainScreenContainer, SideMenu, TaskListContainer } from './MainPage.style';
 
 const MainScreen: React.FC = () => {
-  const layout: Layout[] = [
-    { i: 'menu', x: 0, y: 0, w: 1, h: 2, minW: 1, maxW: 1 },
-    { i: 'tasks', x: 1, y: 0, w: 1, h: 2, minW: 1, maxW: 1 },
-  ];
-
   return (
-    <GridLayout
-      className="layout"
-      layout={layout}
-      cols={2}
-      rowHeight={150}
-      width={1200}
-      isResizable
-      isDraggable
-    >
-      <div key="menu" className="pane">
+    <MainScreenContainer>
+      <SideMenu>
         <MainSideMenu />
-      </div>
-      <div key="tasks" className="pane">
+      </SideMenu>
+      <TaskListContainer>
         <TaskList />
-      </div>
-    </GridLayout>
+      </TaskListContainer>
+    </MainScreenContainer>
   );
 };
 
