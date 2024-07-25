@@ -1,5 +1,5 @@
 import React from 'react';
-import { MenuContainer, MenuHeaderContainer, MenuItemContainer, WorkspaceHeader, WorkspaceItemContainer } from './MainSideMenu.style';
+import { MenuContainer, MenuHeaderContainer, MenuItemContainer, ListsHeader, ListItemContainer } from './MainSideMenu.style';
 import Icon from 'components/atoms/Icon';
 
 interface MenuItemProps {
@@ -32,12 +32,12 @@ const MenuItem: React.FC<MenuItemProps> = ({ iconName, title, active }) => {
   );
 };
 
-const WorkspaceItem: React.FC<MenuItemProps> = ({ iconName, title }) => {
+const ListItem: React.FC<MenuItemProps> = ({ iconName, title }) => {
   return (
-    <WorkspaceItemContainer>
+    <ListItemContainer>
       {iconName && <Icon name={iconName} />}
       <div>{title}</div>
-    </WorkspaceItemContainer>
+    </ListItemContainer>
   );
 };
 
@@ -45,10 +45,10 @@ const MainSideMenu: React.FC = () => {
   return (
     <MenuContainer>
       <MenuHeader iconName="chevron-down" title="Acme Corp" />
-      <WorkspaceHeader>Workspace</WorkspaceHeader>
-      <WorkspaceItem iconName="running" title="Acme '24 F/W" />
-      <WorkspaceItem iconName="camera" title="Team Photo Shoot" />
-      <WorkspaceItem iconName="book" title="Campaign Story" />
+      <ListsHeader>Lists</ListsHeader>
+      <ListItem iconName="running" title="Acme '24 F/W" />
+      <ListItem iconName="camera" title="Team Photo Shoot" />
+      <ListItem iconName="book" title="Campaign Story" />
     </MenuContainer>
   );
 };

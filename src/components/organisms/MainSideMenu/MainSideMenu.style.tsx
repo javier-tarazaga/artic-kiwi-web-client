@@ -41,14 +41,14 @@ export const MenuItemContainer = styled.div<{ active?: boolean }>`
   }
 `;
 
-export const WorkspaceHeader = styled.div`
+export const ListsHeader = styled.div`
   margin-top: 20px;
   margin-bottom: 10px;
   font-size: 14px;
   color: #b0b0b0;
 `;
 
-export const WorkspaceItemContainer = styled.div`
+export const ListItemContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 10px 0;
