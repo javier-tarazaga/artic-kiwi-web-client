@@ -1,27 +1,15 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom';
-import MainScreen from '../components/main/MainScreen';
-import LoginScreen from '../features/auth/LoginScreen';
-import RegisterScreen from 'features/auth/RegisterScreen';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MainPage from 'components/pages/MainPage';
+import LoginPage from 'components/pages/Loginpage';
 
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/">
-          <MainScreen />
-        </Route>
-        <Route path="/login">
-          <LoginScreen />
-        </Route>
-        <Route path="/register">
-          <RegisterScreen />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
     </Router>
   );
 }
