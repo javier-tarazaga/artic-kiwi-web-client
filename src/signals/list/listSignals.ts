@@ -78,7 +78,9 @@ const addTaskToListSuccess = (listId: string, newTask: Task) => {
   if (listIndex !== -1) {
     lists.value[listIndex].tasks = [...lists.value[listIndex].tasks, newTask];
   }
+
   isLoading.value = false;
+  isTaskListLoading.value = false;
   error.value = null;
 };
 
@@ -146,7 +148,7 @@ const addTaskToList = (listId: string, title: string) => {
       lastModifiedAt: new Date().toISOString(),
       title,
     });
-  }, 1000);
+  }, 500);
 };
 
 // Export signals and actions
