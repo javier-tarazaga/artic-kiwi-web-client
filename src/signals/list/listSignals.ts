@@ -147,6 +147,7 @@ const addTaskToList = (listId: string, title: string) => {
       id: new Date().toISOString(), // TODO: Use a proper ID generation mechanism
       lastModifiedAt: new Date().toISOString(),
       title,
+      completed: false
     });
   }, 500);
 };
