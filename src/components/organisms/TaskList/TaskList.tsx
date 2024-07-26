@@ -1,20 +1,29 @@
 import React from 'react';
 import Task from 'components/molecules/Task';
 import { TaskListContainer } from './TaskList.style';
-import { addTaskToList, currentList, error, isTaskListLoading } from 'signals/list/listSignals';
+import { addTaskToList, currentList, error, isLoading, isTaskListLoading } from 'signals/list/listSignals';
 
 function TaskList() {  
   const taskList = currentList;
-  const loading = isTaskListLoading;
+  const taskListLoading = isTaskListLoading;
+  const listLoading = isLoading;
   const taskError = error;
 
   const handleCreateTask = () => {
     addTaskToList(taskList.value!.id,'New Task');
   };
 
+  if (listLoading) {
+    return <p>Loading lists...</p>;
+  }
+
+  if (!taskList) {
+    return <p>No tasks available.</p>;
+  }
+
   return (
     <TaskListContainer>
-      {loading.value && <p>Loading...</p>}
+      {taskListLoading.value && <p>Loading...</p>}
       {taskError.value && <p>Error: {taskError.value}</p>}
       <h1>{taskList.value!.title}</h1>
       <div>

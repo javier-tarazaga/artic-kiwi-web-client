@@ -59,6 +59,12 @@ const getListsSuccess = (listsData: List[]) => {
   lists.value = listsData
   isLoading.value = false
   error.value = null
+
+  // For now lets assign the first loaded element as the current task
+  currentList.value = listsData[0]
+
+  console.log("patata")
+  console.log(lists.value)
 };
 
 const updateListSuccess = (updatedList: List) => {
@@ -74,6 +80,38 @@ const addTaskToListSuccess = (listId: string, newTask: Task) => {
   }
   isLoading.value = false;
   error.value = null;
+};
+
+const fetchLists = () => {
+  startLoading();
+  // Simulate an async call to fetch lists
+  setTimeout(() => {
+    getListsSuccess(
+      [
+        {
+          id: '1', 
+          title: "Work", 
+          createdAt: new Date().toISOString(),
+          lastModifiedAt: '',
+          tasks: []
+        },
+        {
+          id: '1', 
+          title: "Personal", 
+          createdAt: new Date().toISOString(),
+          lastModifiedAt: '',
+          tasks: []
+        },
+        {
+          id: '1', 
+          title: "House Renovations", 
+          createdAt: new Date().toISOString(),
+          lastModifiedAt: '',
+          tasks: []
+        },
+      ]
+    )
+  }, 1000);
 };
 
 // Simulate create list action
@@ -118,6 +156,7 @@ export {
   isLoading,
   isTaskListLoading,
   error,
+  fetchLists,
   createList,
   addTaskToList,
   startLoading,
