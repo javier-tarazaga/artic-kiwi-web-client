@@ -3,12 +3,14 @@ import {
   MainContainer,
   LeftPanel,
   MiddlePanel,
+  RightPanel,
 } from './MainPage.style';
 import MainSideMenu from '@components/organisms/MainSideMenu';
 import TaskList from '@components/organisms/TaskList';
+import TaskDetails from '@components/organisms/TaskDetails';
 
 const MainPage: React.FC = () => {
-  const isRightPanelVisible = true; // Set this based on your logic
+  const isRightPanelVisible = false;
 
   return (
     <MainContainer>
@@ -18,11 +20,11 @@ const MainPage: React.FC = () => {
       <MiddlePanel isRightPanelVisible={isRightPanelVisible}>
         <TaskList />
       </MiddlePanel>
-      {/* {isRightPanelVisible && (
+      {isRightPanelVisible && (
         <RightPanel isRightPanelVisible={isRightPanelVisible}>
           <TaskDetails />
         </RightPanel>
-      )} */}
+      )}
     </MainContainer>
   );
 };

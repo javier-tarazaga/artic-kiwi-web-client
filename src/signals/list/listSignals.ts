@@ -96,14 +96,14 @@ const fetchLists = () => {
           tasks: []
         },
         {
-          id: '1', 
+          id: '2', 
           title: "Personal", 
           createdAt: new Date().toISOString(),
           lastModifiedAt: '',
           tasks: []
         },
         {
-          id: '1', 
+          id: '3', 
           title: "House Renovations", 
           createdAt: new Date().toISOString(),
           lastModifiedAt: '',

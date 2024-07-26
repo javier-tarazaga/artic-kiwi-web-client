@@ -14,7 +14,9 @@ export const LeftPanel = styled.div`
   overflow-y: auto;
 `;
 
-export const MiddlePanel = styled.div<{ isRightPanelVisible: boolean }>`
+export const MiddlePanel = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'isRightPanelVisible',
+})<{ isRightPanelVisible: boolean }>`
   flex-grow: ${({ isRightPanelVisible }) => (isRightPanelVisible ? 8 : 1)};
   flex-shrink: 0;
   min-width: 0; /* Ensures the middle panel can shrink properly */
@@ -24,7 +26,9 @@ export const MiddlePanel = styled.div<{ isRightPanelVisible: boolean }>`
   overflow-y: auto;
 `;
 
-export const RightPanel = styled.div<{ isRightPanelVisible: boolean }>`
+export const RightPanel = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'isRightPanelVisible',
+})<{ isRightPanelVisible: boolean }>`
   flex-grow: 4;
   flex-shrink: 0;
   flex-basis: ${({ isRightPanelVisible }) => (isRightPanelVisible ? '20%' : '0')};
