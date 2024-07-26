@@ -9,7 +9,7 @@ import {
   TaskFooter,
   TaskMessageInput
 } from './TaskDetails.style';
-import Icon from 'components/atoms/Icon';
+import Icon from '@components/atoms/Icon';
 
 const TaskDetails: React.FC = () => {
   return (

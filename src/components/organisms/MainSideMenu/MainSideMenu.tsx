@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { MenuContainer, MenuHeaderContainer, MenuItemContainer, ListsHeader, ListItemContainer } from './MainSideMenu.style';
-import Icon from 'components/atoms/Icon';
-import { error, fetchLists, isLoading, lists } from 'signals/list/listSignals';
+import Icon from '@components/atoms/Icon';
+import { error, fetchLists, isLoading, lists } from '@signals/list/listSignals';
 
 interface MenuItemProps {
   title: string;

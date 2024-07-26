@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Theme from 'styles/themes';
+import Theme from '@styles/themes';
 
 export const AuthFormItem = styled.div`
   margin-bottom: 10px;

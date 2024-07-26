@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Theme from 'styles/themes';
+import Theme from '@styles/themes';
 
 const FooterWrapper = styled.div``;
 

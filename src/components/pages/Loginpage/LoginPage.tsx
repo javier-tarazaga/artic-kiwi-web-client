@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthFormWrapper } from 'components/organisms/AuthForm';
+import { AuthFormWrapper } from '@components/organisms/AuthForm';
 
 function LoginPage() {
   return (

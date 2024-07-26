@@ -1,4 +1,4 @@
-import { Task } from 'signals/task/models';
+import { Task } from '@signals/task/models';
 
 export interface List {
   id: string;

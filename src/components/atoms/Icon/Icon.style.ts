@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Theme from 'styles/themes';
+import Theme from '@styles/themes';
 
 interface IProps {
   size: number;

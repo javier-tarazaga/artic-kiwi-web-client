@@ -1,7 +1,7 @@
 import React from 'react';
-import Task from 'components/molecules/Task';
+import Task from '@components/molecules/Task';
 import { TaskListContainer } from './TaskList.style';
-import { addTaskToList, currentList, error, isLoading, isTaskListLoading } from 'signals/list/listSignals';
+import { addTaskToList, currentList, error, isLoading, isTaskListLoading } from '@signals/list/listSignals';
 
 function TaskList() {  
   const taskList = currentList;

@@ -1,6 +1,6 @@
 import { signal } from '@preact/signals';
 import { List } from './models';
-import { Task } from 'signals/task/models';
+import { Task } from '@signals/task/models';
 
 interface ListState {
   currentList: List | null
