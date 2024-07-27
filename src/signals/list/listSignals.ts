@@ -90,10 +90,25 @@ const fetchLists = () => {
       [
         {
           id: '1', 
-          title: "Work", 
+          title: "Groceries", 
           createdAt: new Date().toISOString(),
           lastModifiedAt: '',
-          tasks: []
+          tasks: [
+            {
+              createdAt: new Date().toISOString(),
+              id: new Date().toISOString(), // TODO: Use a proper ID generation mechanism
+              lastModifiedAt: new Date().toISOString(),
+              title: "tomatoes",
+              completed: false
+            },
+            {
+              createdAt: new Date().toISOString(),
+              id: new Date().toISOString(), // TODO: Use a proper ID generation mechanism
+              lastModifiedAt: new Date().toISOString(),
+              title: "mango",
+              completed: true
+            }
+          ]
         },
         {
           id: '2', 
@@ -150,6 +165,15 @@ const addTaskToList = (listId: string, title: string) => {
   }, 500);
 };
 
+const selectList = (listId: string) => {
+  const list = lists.value.find((list) => list.id === listId);
+  if (list) {
+    selectedListId.value = listId;
+  } else {
+    console.error(`List with id ${listId} not found`);
+  }
+};
+
 // Export signals and actions
 export {
   selectedList,
@@ -165,4 +189,5 @@ export {
   getListSuccess,
   getListsSuccess,
   updateListSuccess,
+  selectList,
 };

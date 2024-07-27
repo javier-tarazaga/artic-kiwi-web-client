@@ -8,11 +8,17 @@ interface ListItemProps {
   title: string;
   isSelected: boolean;
   iconName?: string;
+  onClick: () => void;
 }
 
-const ListItem: React.FC<ListItemProps> = ({ iconName, isSelected, title }) => {
+const ListItem: React.FC<ListItemProps> = ({ 
+  iconName,
+  isSelected,
+  title, 
+  onClick 
+}) => {
   return (
-    <ListItemContainer $isSelected={isSelected}>
+    <ListItemContainer $isSelected={isSelected} onClick={onClick}>
       {iconName && <Icon name={iconName} />}
       <div>{title}</div>
     </ListItemContainer>
@@ -20,11 +26,16 @@ const ListItem: React.FC<ListItemProps> = ({ iconName, isSelected, title }) => {
 };
 
 interface SideMenuListSectionProps {
-  lists: List[],
+  lists: List[]
   selectedListId?: string
+  onSelectList: (listId: string) => void
 }
 
-const SideMenuListSection: React.FC<SideMenuListSectionProps> = ({ lists, selectedListId }) => {
+const SideMenuListSection: React.FC<SideMenuListSectionProps> = ({ 
+  lists,
+  selectedListId,
+  onSelectList
+}) => {
   
   const handleAddList = () => {
     createList("Untitled list");
@@ -44,7 +55,8 @@ const SideMenuListSection: React.FC<SideMenuListSectionProps> = ({ lists, select
             key={list.id}
             iconName="list-icon"
             title={list.title} 
-            isSelected={selectedListId === list.id} />
+            isSelected={selectedListId === list.id}
+            onClick={() => onSelectList(list.id)}/>
         ))}
       </ListContainer>
     </>
