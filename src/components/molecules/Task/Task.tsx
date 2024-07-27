@@ -1,16 +1,19 @@
 import React from 'react';
-import { TaskContainer } from './Task.style';
+import { TaskContainer, TaskCheckbox, TaskInput } from './Task.style';
 
 interface TaskProps {
-  title: string
+  title: string;
+  completed: boolean;
+  onToggle: () => void;
 }
 
-function Task({ title }: TaskProps) {
+const Task: React.FC<TaskProps> = ({ title, completed, onToggle }) => {
   return (
     <TaskContainer>
-      <div>{title}</div>
+      <TaskCheckbox checked={completed} onChange={onToggle} />
+      <TaskInput type="text" value={title} readOnly />
     </TaskContainer>
-  )
-}
+  );
+};
 
 export default Task;

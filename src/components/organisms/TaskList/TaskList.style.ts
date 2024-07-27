@@ -2,34 +2,42 @@ import styled from 'styled-components';
 
 export const TaskListContainer = styled.div`
   padding: 20px;
-  color: white;
+  background-color: #1d1e22;
+  color: #fff;
+  font-family: Arial, sans-serif;
+`;
 
-  h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
+export const ListHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
-  .task-list-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+export const ListTitle = styled.h1`
+  font-size: 36px;
+  margin: 0;
+`;
 
-    p {
-      color: #b0b0b0;
-    }
+export const TaskInputContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+`;
 
-    .new-task-button {
-      background-color: #3a3a3a;
-      color: white;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-      border-radius: 4px;
+export const TaskCheckbox = styled.input.attrs({ type: 'checkbox' })`
+  margin-right: 10px;
+`;
 
-      &:hover {
-        background-color: #505050;
-      }
-    }
+export const TaskInput = styled.input`
+  flex-grow: 1;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid #444;
+  color: #fff;
+  border-radius: 5px;
+
+  &::placeholder {
+    color: #777;
   }
 `;
+

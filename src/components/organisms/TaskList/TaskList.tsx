@@ -1,11 +1,34 @@
 import React from 'react';
 import Task from '@components/molecules/Task';
-import { TaskListContainer } from './TaskList.style';
+import { TaskListContainer, TaskInputContainer, TaskCheckbox, TaskInput, ListTitle, ListHeader } from './TaskList.style';
 import { addTaskToList, selectedList, error, isLoading, isTaskListLoading } from '@signals/list/listSignals';
+import { signal } from '@preact/signals';
+
+const newTaskTitle = signal('');
 
 function TaskList() {
   const handleCreateTask = () => {
-    addTaskToList(selectedList.value!.id, 'New Task');
+    if (newTaskTitle.value.trim() !== '') {
+      addTaskToList(selectedList.value!.id, newTaskTitle.value);
+      newTaskTitle.value = ''; // Clear the input after adding the task
+    }
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    newTaskTitle.value = event.target.value;
+  };
+
+  const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleCreateTask();
+    }
+  };
+
+  const handleToggleTaskCompletion = (taskId: string) => {
+    const task = selectedList.value!.tasks.find(t => t.id === taskId);
+    if (task) {
+      task.completed = !task.completed;
+    }
   };
 
   if (isLoading.value) {
@@ -17,21 +40,29 @@ function TaskList() {
   }
 
   return (
-    <TaskListContainer>      
+    <TaskListContainer>
       {error.value && <p>Error: {error.value}</p>}
-      <h1>{selectedList.value!.title}</h1>
-      <div>
-        <p>See what's due today and review any overdue tasks</p>
-        <button onClick={handleCreateTask}>New task</button>
-      </div>
-      {
-        selectedList.value!.tasks.map((task) => 
-          <Task
-            key={task.id}
-            title={task.title}
-          />
-        )
-      }
+      <ListHeader>
+        <ListTitle>{selectedList.value!.title}</ListTitle>
+        <div>This list is private</div>
+      </ListHeader>
+      {selectedList.value!.tasks.map((task) => (
+        <Task
+          key={task.id}
+          title={task.title}
+          completed={task.completed}
+          onToggle={() => handleToggleTaskCompletion(task.id)}
+        />
+      ))}
+      <TaskInputContainer>
+        <TaskCheckbox />
+        <TaskInput
+          placeholder="Add a task, or type '/' to choose a different content type"
+          value={newTaskTitle.value}
+          onChange={handleInputChange}
+          onKeyDown={handleInputKeyDown}
+        />
+      </TaskInputContainer>
       {isTaskListLoading.value && <p>Loading...</p>}
     </TaskListContainer>
   );

@@ -96,14 +96,14 @@ const fetchLists = () => {
           tasks: [
             {
               createdAt: new Date().toISOString(),
-              id: new Date().toISOString(), // TODO: Use a proper ID generation mechanism
+              id: "1",
               lastModifiedAt: new Date().toISOString(),
               title: "tomatoes",
               completed: false
             },
             {
               createdAt: new Date().toISOString(),
-              id: new Date().toISOString(), // TODO: Use a proper ID generation mechanism
+              id: "2",
               lastModifiedAt: new Date().toISOString(),
               title: "mango",
               completed: true
