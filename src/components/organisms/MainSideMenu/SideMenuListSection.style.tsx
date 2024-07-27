@@ -19,7 +19,7 @@ export const ListItemContainer = styled.div<{ $isSelected?: boolean }>`
   padding: 10px 0;
   cursor: pointer;
   color: #b0b0b0;
-  background-color: ${props => props.$isSelected ? '#d2d5d7' : 'transparent'};
+  background-color: ${props => props.$isSelected ? '#48464e' : 'transparent'};
 
   & > div {
     margin-left: 10px;
