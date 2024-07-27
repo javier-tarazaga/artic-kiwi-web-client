@@ -3,6 +3,7 @@ import { MenuContainer, MenuHeaderContainer, MenuItemContainer } from './MainSid
 import Icon from '@components/atoms/Icon';
 import { fetchLists, lists, selectedList, selectList } from '@signals/list/listSignals';
 import SideMenuListSection from './SideMenuListSection';
+import { List } from '@signals/list/models';
 
 interface MenuItemProps {
   title: string;
@@ -43,8 +44,8 @@ const MainSideMenu: React.FC = () => {
     fetchLists();
   }, []);
 
-  const handleSelectList = (listId: string) => {
-    selectList(listId);
+  const handleSelectList = (list: List) => {
+    selectList(list);
   };
 
   return (
