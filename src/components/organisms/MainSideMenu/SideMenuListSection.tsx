@@ -28,7 +28,7 @@ const ListItem: React.FC<ListItemProps> = ({
 interface SideMenuListSectionProps {
   lists: List[]
   selectedListId?: string
-  onSelectList: (list: List) => void
+  onSelectList: (listId: string) => void
 }
 
 const SideMenuListSection: React.FC<SideMenuListSectionProps> = ({ 
@@ -56,7 +56,7 @@ const SideMenuListSection: React.FC<SideMenuListSectionProps> = ({
             iconName="list-icon"
             title={list.title} 
             isSelected={selectedListId === list.id}
-            onClick={() => onSelectList(list)}/>
+            onClick={() => onSelectList(list.id)}/>
         ))}
       </ListContainer>
     </>

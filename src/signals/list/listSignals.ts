@@ -165,8 +165,13 @@ const addTaskToList = (listId: string, title: string) => {
   }, 500);
 };
 
-const selectList = (list: List) => {
-  selectedListId.value = list.id;
+const selectList = (listId: string) => {
+  const list = lists.value.find((list) => list.id === listId);
+  if (list) {
+    selectedListId.value = listId;
+  } else {
+    console.error(`List with id ${listId} not found`);
+  }
 };
 
 // Export signals and actions
