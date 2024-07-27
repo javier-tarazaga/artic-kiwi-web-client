@@ -44,7 +44,7 @@ const loadingFailed = (errorMessage: string) => {
 
 const createListSuccess = (newList: List) => {
   currentList.value = newList;
-  lists.value = [...lists.value, newList]
+  lists.value = [newList, ...lists.value]
   isLoading.value = false
   error.value = null
 };
@@ -62,9 +62,6 @@ const getListsSuccess = (listsData: List[]) => {
 
   // For now lets assign the first loaded element as the current task
   currentList.value = listsData[0]
-
-  console.log("patata")
-  console.log(lists.value)
 };
 
 const updateListSuccess = (updatedList: List) => {
