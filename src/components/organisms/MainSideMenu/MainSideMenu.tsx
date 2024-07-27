@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { MenuContainer, MenuHeaderContainer, MenuItemContainer } from './MainSideMenu.style';
 import Icon from '@components/atoms/Icon';
-import { fetchLists, lists } from '@signals/list/listSignals';
+import { fetchLists, lists, selectedList } from '@signals/list/listSignals';
 import SideMenuListSection from './SideMenuListSection';
 
 interface MenuItemProps {
@@ -46,7 +46,10 @@ const MainSideMenu: React.FC = () => {
   return (
     <MenuContainer>
       <MenuHeader iconName="chevron-down" title="Acme Corp" />
-      <SideMenuListSection lists={listSignal.value}/>
+      <SideMenuListSection 
+        lists={listSignal.value}
+        selectedListId={selectedList.value?.id}
+      />
     </MenuContainer>
   );
 };

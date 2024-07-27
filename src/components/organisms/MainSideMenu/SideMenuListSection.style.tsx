@@ -13,12 +13,13 @@ export const ListsHeader = styled.div`
   color: #b0b0b0;
 `;
 
-export const ListItemContainer = styled.div`
+export const ListItemContainer = styled.div<{ $isSelected?: boolean }>`
   display: flex;
   align-items: center;
   padding: 10px 0;
   cursor: pointer;
   color: #b0b0b0;
+  background-color: ${props => props.$isSelected ? '#d2d5d7' : 'transparent'};
 
   & > div {
     margin-left: 10px;

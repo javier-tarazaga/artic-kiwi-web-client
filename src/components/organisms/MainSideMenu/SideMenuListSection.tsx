@@ -1,17 +1,18 @@
 import React from 'react';
-import { ListsHeader, ListItemContainer, AddListButton, AddListButtonText, ListContainer, HeaderContainer } from './SideMenuListSection.style';
+import { ListsHeader, ListItemContainer, AddListButton, ListContainer, HeaderContainer } from './SideMenuListSection.style';
 import Icon from '@components/atoms/Icon';
 import { List } from '@signals/list/models';
 import { createList } from '@signals/list/listSignals';
 
 interface ListItemProps {
   title: string;
+  isSelected: boolean;
   iconName?: string;
 }
 
-const ListItem: React.FC<ListItemProps> = ({ iconName, title }) => {
+const ListItem: React.FC<ListItemProps> = ({ iconName, isSelected, title }) => {
   return (
-    <ListItemContainer>
+    <ListItemContainer $isSelected={isSelected}>
       {iconName && <Icon name={iconName} />}
       <div>{title}</div>
     </ListItemContainer>
@@ -19,10 +20,11 @@ const ListItem: React.FC<ListItemProps> = ({ iconName, title }) => {
 };
 
 interface SideMenuListSectionProps {
-  lists: List[]
+  lists: List[],
+  selectedListId?: string
 }
 
-const SideMenuListSection: React.FC<SideMenuListSectionProps> = ({ lists }) => {
+const SideMenuListSection: React.FC<SideMenuListSectionProps> = ({ lists, selectedListId }) => {
   
   const handleAddList = () => {
     createList("Untitled list");
@@ -38,7 +40,11 @@ const SideMenuListSection: React.FC<SideMenuListSectionProps> = ({ lists }) => {
       </HeaderContainer>
       <ListContainer>
         {lists.map((list) => (
-          <ListItem key={list.id} iconName="list-icon" title={list.title} />
+          <ListItem 
+            key={list.id}
+            iconName="list-icon"
+            title={list.title} 
+            isSelected={selectedListId === list.id} />
         ))}
       </ListContainer>
     </>

@@ -1,9 +1,9 @@
-import { signal } from '@preact/signals';
+import { computed, signal } from '@preact/signals';
 import { List } from './models';
 import { Task } from '@signals/task/models';
 
 interface ListState {
-  currentList: List | null
+  selectedListId: string | null
   lists: List[]
   isLoading: boolean
   isTaskListLoading: boolean
@@ -12,7 +12,7 @@ interface ListState {
 
 // Initial state
 const initialState: ListState = {
-  currentList: null,
+  selectedListId: null,
   lists: [],
   isLoading: false,
   isTaskListLoading: false,
@@ -20,11 +20,12 @@ const initialState: ListState = {
 };
 
 // Create signals for each state property
-const currentList = signal<List | null>(initialState.currentList)
 const lists = signal<List[]>(initialState.lists)
 const isLoading = signal<boolean>(initialState.isLoading)
 const isTaskListLoading = signal<boolean>(initialState.isTaskListLoading)
 const error = signal<string | null>(initialState.error)
+const selectedListId = signal<string | null>(initialState.selectedListId)
+const selectedList = computed(() => lists.value.find((list) => list.id === selectedListId.value))
 
 // Actions
 const startLoading = () => {
@@ -43,14 +44,14 @@ const loadingFailed = (errorMessage: string) => {
 };
 
 const createListSuccess = (newList: List) => {
-  currentList.value = newList;
+  selectedListId.value = newList.id
   lists.value = [newList, ...lists.value]
   isLoading.value = false
   error.value = null
 };
 
 const getListSuccess = (list: List) => {
-  currentList.value = list
+  selectedListId.value = list.id
   isLoading.value = false
   error.value = null
 };
@@ -61,11 +62,11 @@ const getListsSuccess = (listsData: List[]) => {
   error.value = null
 
   // For now lets assign the first loaded element as the current task
-  currentList.value = listsData[0]
+  selectedListId.value = listsData[0].id
 };
 
 const updateListSuccess = (updatedList: List) => {
-  currentList.value = updatedList
+  selectedListId.value = updatedList.id
   isLoading.value = false
   error.value = null
 };
@@ -151,7 +152,7 @@ const addTaskToList = (listId: string, title: string) => {
 
 // Export signals and actions
 export {
-  currentList,
+  selectedList,
   lists,
   isLoading,
   isTaskListLoading,
