@@ -39,7 +39,7 @@ const SideMenuListSection: React.FC<SideMenuListSectionProps> = ({
   
   const handleAddList = () => {
     createList("Untitled list");
-  };
+  };  
 
   return (
     <>

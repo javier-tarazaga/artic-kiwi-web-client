@@ -24,8 +24,10 @@ const lists = signal<List[]>(initialState.lists)
 const isLoading = signal<boolean>(initialState.isLoading)
 const isTaskListLoading = signal<boolean>(initialState.isTaskListLoading)
 const error = signal<string | null>(initialState.error)
-const selectedListId = signal<string | null>(initialState.selectedListId)
-const selectedList = computed(() => lists.value.find((list) => list.id === selectedListId.value))
+const selectedListId = signal<string | null>(initialState.selectedListId);
+const selectedList = computed(() => {
+  return lists.value.find((list) => list.id === selectedListId.value) || null;
+});
 
 // Actions
 const startLoading = () => {
@@ -165,6 +167,20 @@ const addTaskToList = (listId: string, title: string) => {
   }, 500);
 };
 
+const updateListTask = (listId: string, updatedTask: Task) => {
+  lists.value = lists.value.map(list => {
+    if (list.id === listId) {
+      return {
+        ...list,
+        tasks: list.tasks.map(task => 
+          task.id === updatedTask.id ? updatedTask : task
+        )
+      };
+    }
+    return list;
+  });
+};
+
 const selectList = (listId: string) => {
   const list = lists.value.find((list) => list.id === listId);
   if (list) {
@@ -190,4 +206,5 @@ export {
   getListsSuccess,
   updateListSuccess,
   selectList,
+  updateListTask
 };

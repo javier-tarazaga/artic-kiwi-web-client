@@ -1,12 +1,12 @@
 import React from 'react';
 import Task from '@components/molecules/Task';
 import { TaskListContainer, TaskInputContainer, TaskCheckbox, TaskInput, ListTitle, ListHeader } from './TaskList.style';
-import { addTaskToList, selectedList, error, isLoading, isTaskListLoading } from '@signals/list/listSignals';
+import { addTaskToList, selectedList, error, isLoading, isTaskListLoading, updateListTask } from '@signals/list/listSignals';
 import { signal } from '@preact/signals';
 
 const newTaskTitle = signal('');
 
-function TaskList() {
+function TaskList() {  
   const handleCreateTask = () => {
     if (newTaskTitle.value.trim() !== '') {
       addTaskToList(selectedList.value!.id, newTaskTitle.value);
@@ -27,7 +27,8 @@ function TaskList() {
   const handleToggleTaskCompletion = (taskId: string) => {
     const task = selectedList.value!.tasks.find(t => t.id === taskId);
     if (task) {
-      task.completed = !task.completed;
+      const updatedTask = { ...task, completed: !task.completed };
+      updateListTask(selectedList.value!.id, updatedTask);
     }
   };
 
@@ -44,7 +45,6 @@ function TaskList() {
       {error.value && <p>Error: {error.value}</p>}
       <ListHeader>
         <ListTitle>{selectedList.value!.title}</ListTitle>
-        <div>This list is private</div>
       </ListHeader>
       {selectedList.value!.tasks.map((task) => (
         <Task
@@ -69,3 +69,4 @@ function TaskList() {
 }
 
 export default TaskList;
+
